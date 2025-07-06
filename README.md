@@ -1,44 +1,68 @@
-# Quantum-Transfer-Learning
-This project demonstrates a hybrid Classical-to-Quantum Transfer Learning pipeline for image classification using ResNet18 as a feature extractor and a 4-qubit variational quantum circuit for classification.
+# Quantum Transfer Learning with ResNet18 and Dressed Quantum Circuits
 
-**Overview**
+## Description
 
-This work explores how classical deep learning models can be combined with quantum circuits for enhanced performance on specific tasks. We use:
+This project explores the concept of Classical-to-Quantum Transfer Learning, where features extracted by a classical deep learning model are passed into a quantum machine learning model for final classification. Specifically, we use the pre-trained ResNet18 architecture to extract abstract features from high-resolution images, and feed these features into a 4-qubit variational quantum circuit (VQC) classifier.
 
-ResNet18 (pre-trained on ImageNet) to extract 512-dimensional feature vectors.
+The goal of this project is to demonstrate the feasibility and performance of hybrid classical-quantum models in image classification tasks, especially on limited datasets like Hymenoptera (which contains only two classes: ants and bees).
 
-A dressed quantum circuit (variational quantum circuit with classical layers) to classify image features.
+## Key Concepts
 
-The Hymenoptera dataset (ants vs. bees) as the target task for classification.
+### 1. Transfer Learning
 
-**What is Transfer Learning?**
+Transfer learning involves using a model trained on one task (usually on a large dataset) and adapting it for another task with limited data. In our case, we use the feature extractor part of ResNet18, a well-known convolutional neural network trained on ImageNet, and adapt it for a different task: binary classification of insect images.
 
-Transfer learning leverages a model trained on one task and adapts it to a different but related task. We use a frozen ResNet18 model to convert high-resolution images into abstract features, which are then classified using a trainable quantum circuit.
+### 2. Classical Feature Extraction
 
-**Architecture**
+ResNet18, pre-trained on the ImageNet dataset, is used to convert raw image data into 512-dimensional feature vectors. This is done by removing the last classification layer and freezing the weights of the remaining network. The resulting model outputs abstract representations of images that capture important visual patterns.
 
-Feature Extractor: Pre-trained ResNet18 (final layer removed)
+### 3. Quantum Classification
 
-Classifier: 4-qubit variational quantum circuit with classical layers (Hybrid Model)
+The abstract features from ResNet18 are input into a hybrid classifier. The core of this classifier is a variational quantum circuit (VQC) implemented using 4 qubits. This VQC is “dressed” between classical layers to improve its expressivity and performance. The quantum circuit is trained while keeping ResNet18 frozen.
 
-Input Image → ResNet18 → 512 Features → Quantum Circuit → Class → Output
+### 4. Dataset
 
-**Dataset**
+We use the Hymenoptera dataset, a subset of the ImageNet dataset, which includes labeled images of ants and bees. This dataset is chosen for its simplicity, making it suitable for testing hybrid models.
 
-Hymenoptera Dataset (subset of ImageNet): Binary classification of ant and bee images.
+## File Descriptions
 
-**How to Run**
+- `transfer_learning.ipynb`: Jupyter Notebook containing the full Python implementation of the hybrid model.
+- `3D float design.pptx`: Presentation outlining the concept, architecture, implementation, and results.
 
-Install required libraries:
+## How to Run
 
-pip install torch torchvision qiskit matplotlib
+1. Install required Python packages:
+   ```bash
+   pip install torch torchvision qiskit matplotlib numpy
+   ```
 
-Open and run the Jupyter notebook transfer_learning.ipynb
+2. Launch the Jupyter Notebook:
+   ```bash
+   jupyter notebook transfer_learning.ipynb
+   ```
 
-View the predictions and visualize model performance.
+3. Run all cells in order to:
+   - Load and preprocess the dataset
+   - Extract features using ResNet18
+   - Pass the features to a dressed quantum circuit
+   - Train the hybrid model
+   - Evaluate and visualize the results
 
-**Contributors**
+## Outcomes
 
-Satwik Chaubey
-Jagrit
-Sajal Jain
+- The hybrid model successfully classifies ants vs. bees using classical-to-quantum transfer learning.
+- Demonstrates how quantum-enhanced models can be used for real-world machine learning tasks.
+- Encourages further exploration of quantum neural networks and quantum-classical hybrid systems.
+
+## Potential Extensions
+
+- Expand to multi-class datasets
+- Try other CNN architectures like VGG or EfficientNet
+- Experiment with deeper or alternative quantum circuit designs
+- Apply the method to non-image tasks (e.g., finance, medical data)
+
+## Contributors
+
+- Satwik Chaubey  
+- Jagrit  
+- Sajal Jain
