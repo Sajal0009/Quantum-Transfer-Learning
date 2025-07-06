@@ -11,7 +11,7 @@ A dressed quantum circuit (variational quantum circuit with classical layers) to
 
 The Hymenoptera dataset (ants vs. bees) as the target task for classification.
 
-What is Transfer Learning?
+**What is Transfer Learning?**
 
 Transfer learning leverages a model trained on one task and adapts it to a different but related task. We use a frozen ResNet18 model to convert high-resolution images into abstract features, which are then classified using a trainable quantum circuit.
 
@@ -23,13 +23,7 @@ Classifier: 4-qubit variational quantum circuit with classical layers (Hybrid Mo
 
 Input Image → ResNet18 → 512 Features → Quantum Circuit → Class → Output
 
-Files
-
-transfer_learning.ipynb : Python implementation of the hybrid transfer learning pipeline.
-
-3D float design.pptx : Presentation outlining the project concept, motivation, and key results.
-
-Dataset
+**Dataset**
 
 Hymenoptera Dataset (subset of ImageNet): Binary classification of ant and bee images.
 
